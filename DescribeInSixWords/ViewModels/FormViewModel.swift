@@ -16,4 +16,10 @@ class FormViewModel: ObservableObject {
         FormField(prompt: "Another one, almost there:", placeholder: "cute", descriptor: ""),
         FormField(prompt: "Final one, make it count:", placeholder: "meow", descriptor: ""),
     ]
+    
+    func clearAllFields() {
+        for i in (0..<fields.count) {
+            fields[i].descriptor = ""
+        }
+    }
 }

@@ -26,7 +26,7 @@ struct ContentView: View {
                             .navigationBarBackButtonHidden(true)
                             // TODO: Implement .disableSwipeBack() helper function
                     case .grid:
-                        GridView()
+                        GridView(path: $path)
                     }
                 }
         }.environmentObject(viewModel)

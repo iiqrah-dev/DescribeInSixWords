@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GridView: View {
-//    @Binding var path: [Screen]
+    @Binding var path: [Screen]
     @EnvironmentObject var formViewModel: FormViewModel
     @StateObject private var gridViewModel = GridViewModel()
     
@@ -29,6 +29,8 @@ struct GridView: View {
             HStack {
                 Spacer()
                 PrimaryOutlinedButton(label: "Restart") {
+                    formViewModel.clearAllFields()
+                    path = [.form]
                 }
                 
                 Spacer()
@@ -43,6 +45,5 @@ struct GridView: View {
 }
 
 #Preview {
-//    GridView(path: .constant([]))
-    GridView()
+    GridView(path: .constant([]))
 }

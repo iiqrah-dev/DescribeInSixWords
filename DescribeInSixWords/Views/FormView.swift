@@ -10,13 +10,18 @@ import SwiftUI
 struct FormView: View {
     @Binding var path: [Screen]
     @EnvironmentObject var viewModel: FormViewModel
+//    Uncomment to test the viewModle in Preview, make sure to comment it back
+//    @StateObject private var viewModel = FormViewModel()
     
     var body: some View {
         VStack {
             title
             ScrollView(showsIndicators: false) {
                 form
-                button
+                HStack {
+                    generateButton
+                    clearAllButton
+                }
             }
         }.padding(.horizontal, Constants.Layout.paddingLarge)
     }
@@ -45,9 +50,16 @@ private extension FormView {
         }
     }
     
-    var button: some View {
+    var generateButton: some View {
         PrimaryOutlinedButton(label: Constants.Texts.buttonGenerate){
             path.append(.grid)
+        }
+        .padding(.vertical, Constants.Layout.paddingLarge)
+        .frame(maxWidth: .infinity, alignment: .center)
+    }
+    var clearAllButton: some View {
+        PrimaryOutlinedButton(label: Constants.Texts.buttonClearAll){
+            viewModel.clearAllFields()
         }
         .padding(.vertical, Constants.Layout.paddingLarge)
         .frame(maxWidth: .infinity, alignment: .center)

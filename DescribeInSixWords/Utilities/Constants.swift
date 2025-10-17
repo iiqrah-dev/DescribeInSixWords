@@ -14,6 +14,7 @@ enum Constants {
         static let welcomeViewSubtitle2 = "Generate a vibrant snapshot."
         static let buttonLetsBegin = "Let's begin"
         static let buttonGenerate = "Generate"
+        static let buttonClearAll = "Clear All"
     }
 
     enum Colors {
