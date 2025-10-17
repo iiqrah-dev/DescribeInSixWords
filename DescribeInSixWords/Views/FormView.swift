@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FormView: View {
     @Binding var path: [Screen]
-    @StateObject private var viewModel = FormViewModel()
+    @EnvironmentObject var viewModel: FormViewModel
     
     var body: some View {
         VStack {

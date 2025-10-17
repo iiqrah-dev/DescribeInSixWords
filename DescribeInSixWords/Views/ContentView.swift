@@ -14,6 +14,7 @@ enum Screen: Hashable {
 
 struct ContentView: View {
     @State private var path: [Screen] = []
+    @StateObject private var viewModel = FormViewModel()
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -28,7 +29,7 @@ struct ContentView: View {
                         GridView()
                     }
                 }
-        }
+        }.environmentObject(viewModel)
     }
 }
 

@@ -9,12 +9,22 @@ import SwiftUI
 
 struct GridView: View {
 //    @Binding var path: [Screen]
-    @StateObject private var viewModel = GridViewModel()
+    @EnvironmentObject var formViewModel: FormViewModel
+    @StateObject private var gridViewModel = GridViewModel()
     
     var body: some View {
         VStack {
-            Text("\(viewModel.gridColumnCount)")
-            Text("\(viewModel.gridRowCount)")
+            Text("\(gridViewModel.gridColumnCount)")
+            Text("\(gridViewModel.gridRowCount)")
+            
+            ForEach(0..<formViewModel.fields.count, id: \.self) { index in
+                VStack {
+                    Text(formViewModel.fields[index].descriptor)
+                        .font(.caption)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                }.padding(.bottom, Constants.Layout.paddingLarge)
+            }
             
             HStack {
                 Spacer()
