@@ -10,9 +10,31 @@ import SwiftUI
 struct GridView: View {
     @Binding var path: [Screen]
     @EnvironmentObject var formViewModel: FormViewModel
+//    @StateObject private var formViewModel = FormViewModel()
     @StateObject private var gridViewModel = GridViewModel()
     
     var body: some View {
+        VStack {
+            
+            title
+            
+            grid
+            
+            buttons
+        }
+    }
+}
+
+private extension GridView {
+    
+    var title: some View {
+        Text(Constants.Texts.appTitle)
+            .font(.title)
+            .bold()
+            .padding(.bottom, Constants.Layout.paddingLarge)
+    }
+    
+    var grid: some View {
         VStack {
             Text("\(gridViewModel.gridColumnCount)")
             Text("\(gridViewModel.gridRowCount)")
@@ -26,22 +48,24 @@ struct GridView: View {
                 }.padding(.bottom, Constants.Layout.paddingLarge)
             }
             
-            HStack {
-                Spacer()
-                PrimaryOutlinedButton(label: "Restart") {
-                    formViewModel.clearAllFields()
-                    path = [.form]
-                }
-                
-                Spacer()
-                
-                PrimaryOutlinedButton(label: " Save   ") {
-                    
-                }
-                Spacer()
-            }
         }
     }
+    
+    var buttons: some View {
+        HStack {
+            Spacer()
+            PrimaryOutlinedButton(label: "Restart") {
+                formViewModel.clearAllFields()
+                path = [.form]
+            }
+            Spacer()
+            PrimaryOutlinedButton(label: " Save   ") {}
+            Spacer()
+        }
+    }
+    
+    
+    
 }
 
 #Preview {
