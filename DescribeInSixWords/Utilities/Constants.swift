@@ -31,6 +31,7 @@ enum Constants {
         static let paddingMedium: CGFloat = 15
         static let paddingSmall: CGFloat = 10
         static let buttonBorderWidth: CGFloat = 1
+        static let gridBoxBorderWidth: CGFloat = 3
         static let cornerRadius: CGFloat = 8
     }
 }

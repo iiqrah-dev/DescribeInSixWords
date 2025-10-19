@@ -35,20 +35,23 @@ private extension GridView {
     }
     
     var grid: some View {
-        VStack {
-            Text("\(gridViewModel.gridColumnCount)")
-            Text("\(gridViewModel.gridRowCount)")
-            
-            ForEach(0..<formViewModel.fields.count, id: \.self) { index in
-                VStack {
-                    Text(formViewModel.fields[index].descriptor)
-                        .font(.caption)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                }.padding(.bottom, Constants.Layout.paddingLarge)
+        VStack{
+            GridItemBox(word: formViewModel.fields[0].descriptor, boxColour: gridViewModel.grid[0].boxColour, fontSize: .largeTitle)
+            HStack{
+                GridItemBox(word: formViewModel.fields[1].descriptor, boxColour: .green)
+                GridItemBox(word: formViewModel.fields[2].descriptor, boxColour: .orange)
             }
-            
+            HStack {
+                GridItemBox(word: formViewModel.fields[3].descriptor, boxColour: .blue)
+                VStack {
+                    GridItemBox(word: formViewModel.fields[4].descriptor, boxColour: .red)
+                    GridItemBox(word: formViewModel.fields[5].descriptor, boxColour: .yellow)
+                }
+            }
         }
+        .padding(.all)
+        .frame(width: 400, height: 500)
+        
     }
     
     var buttons: some View {
@@ -62,11 +65,12 @@ private extension GridView {
             PrimaryOutlinedButton(label: " Save   ") {}
             Spacer()
         }
+        .padding(.top, Constants.Layout.paddingLarge)
     }
     
-    
-    
 }
+
+
 
 #Preview {
     GridView(path: .constant([]))

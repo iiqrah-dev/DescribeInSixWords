@@ -13,7 +13,7 @@ struct GridItem {
     let rowSpan: Int
     let columnSpan: Int
     let orientation: Orientation
-    let colour: Color
+    let boxColour: Color
 }
 
 enum Orientation {
