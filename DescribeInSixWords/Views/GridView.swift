@@ -11,7 +11,6 @@ struct GridView: View {
     @Binding var path: [Screen]
     @EnvironmentObject var formViewModel: FormViewModel
 //    @StateObject private var formViewModel = FormViewModel()
-    @StateObject private var gridViewModel = GridViewModel()
     
     var body: some View {
         VStack {
@@ -36,16 +35,16 @@ private extension GridView {
     
     var grid: some View {
         VStack{
-            GridItemBox(word: formViewModel.fields[0].descriptor, boxColour: gridViewModel.grid[0].boxColour, fontSize: .largeTitle)
+            GridItemBox(word: formViewModel.fields[0].descriptor, boxColour: .pastelPurple, fontSize: .largeTitle)
             HStack{
-                GridItemBox(word: formViewModel.fields[1].descriptor, boxColour: gridViewModel.grid[1].boxColour)
-                GridItemBox(word: formViewModel.fields[2].descriptor, boxColour: gridViewModel.grid[2].boxColour)
+                GridItemBox(word: formViewModel.fields[1].descriptor, boxColour: .pastelGreen)
+                GridItemBox(word: formViewModel.fields[2].descriptor, boxColour: .pastelOrange)
             }
             HStack {
-                GridItemBox(word: formViewModel.fields[3].descriptor, boxColour: gridViewModel.grid[3].boxColour)
+                GridItemBox(word: formViewModel.fields[3].descriptor, boxColour: .pastelBlue)
                 VStack {
-                    GridItemBox(word: formViewModel.fields[4].descriptor, boxColour: gridViewModel.grid[4].boxColour)
-                    GridItemBox(word: formViewModel.fields[5].descriptor, boxColour: gridViewModel.grid[5].boxColour)
+                    GridItemBox(word: formViewModel.fields[4].descriptor, boxColour: .pastelRed)
+                    GridItemBox(word: formViewModel.fields[5].descriptor, boxColour: .pastelYellow)
                 }
             }
         }
