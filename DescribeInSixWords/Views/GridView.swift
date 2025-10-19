@@ -11,7 +11,8 @@ import Photos
 struct GridView: View {
     @Binding var path: [Screen]
 //    @EnvironmentObject var formViewModel: FormViewModel
-    @StateObject private var formViewModel = FormViewModel()
+        @StateObject private var formViewModel = FormViewModel()
+    @StateObject private var gridViewModel = GridViewModel()
     
     var body: some View {
         VStack {
@@ -56,14 +57,12 @@ private extension GridView {
         HStack {
             Spacer()
             PrimaryOutlinedButton(label: "Restart") {
-                formViewModel.clearAllFields()
-                path = [.form]
+                performRestart()
             }
             Spacer()
             PrimaryOutlinedButton(label: " Save   ") {
-                if let image = saveImage() {
-                    saveImageToPhotoLibrary(image)
-                }
+                performSave()
+                
             }
             Spacer()
         }
@@ -71,35 +70,29 @@ private extension GridView {
     }
     
     var mainContent: some View {
-        VStack(spacing: Constants.Layout.paddingLarge) {
-            title
-            grid
-        }
-        .background(.white)
-        .padding(Constants.Layout.paddingLarge)
-    }
-    
-    func saveImage() -> UIImage? {
-        let renderer = ImageRenderer(content: mainContent)
-        return renderer.uiImage
-    }
-    
-    func saveImageToPhotoLibrary(_ image: UIImage) {
-        PHPhotoLibrary.requestAuthorization { status in
-            if status == .authorized {
-                PHPhotoLibrary.shared().performChanges({
-                    PHAssetChangeRequest.creationRequestForAsset(from: image)
-                }) { success, error in
-                    if success {
-                        print("Image saved successfully!")
-                    } else if let error = error {
-                        print("Error saving image: \(error.localizedDescription)")
-                    }
-                }
-            } else {
-                print("Photo library access denied")
+        ZStack {
+            
+            Color.white
+                .ignoresSafeArea()
+            
+            VStack(spacing: Constants.Layout.paddingLarge) {
+                title
+                grid
             }
+            .background(.white)
+            .padding(Constants.Layout.paddingLarge)
         }
+    }
+    
+    func performSave()  {
+        if let image = gridViewModel.saveImage(mainContent) {
+            gridViewModel.saveImageToPhotoLibrary(image)
+        }
+    }
+    
+    func performRestart()  {
+        formViewModel.clearAllFields()
+        path = [.form]
     }
     
 }

@@ -22,7 +22,7 @@ struct FormView: View {
                     generateButton
                     clearAllButton
                 }
-            }
+            }.scrollBounceBehavior(.basedOnSize)
         }
         .padding(.horizontal, Constants.Layout.paddingLarge)
     }
