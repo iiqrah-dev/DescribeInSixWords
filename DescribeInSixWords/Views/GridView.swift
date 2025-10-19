@@ -38,14 +38,14 @@ private extension GridView {
         VStack{
             GridItemBox(word: formViewModel.fields[0].descriptor, boxColour: gridViewModel.grid[0].boxColour, fontSize: .largeTitle)
             HStack{
-                GridItemBox(word: formViewModel.fields[1].descriptor, boxColour: .green)
-                GridItemBox(word: formViewModel.fields[2].descriptor, boxColour: .orange)
+                GridItemBox(word: formViewModel.fields[1].descriptor, boxColour: gridViewModel.grid[1].boxColour)
+                GridItemBox(word: formViewModel.fields[2].descriptor, boxColour: gridViewModel.grid[2].boxColour)
             }
             HStack {
-                GridItemBox(word: formViewModel.fields[3].descriptor, boxColour: .blue)
+                GridItemBox(word: formViewModel.fields[3].descriptor, boxColour: gridViewModel.grid[3].boxColour)
                 VStack {
-                    GridItemBox(word: formViewModel.fields[4].descriptor, boxColour: .red)
-                    GridItemBox(word: formViewModel.fields[5].descriptor, boxColour: .yellow)
+                    GridItemBox(word: formViewModel.fields[4].descriptor, boxColour: gridViewModel.grid[4].boxColour)
+                    GridItemBox(word: formViewModel.fields[5].descriptor, boxColour: gridViewModel.grid[5].boxColour)
                 }
             }
         }

@@ -11,7 +11,7 @@ struct GridItemBox: View {
     let word: String
     let boxColour: Color
     let boxBorderColour: Color = .white
-    var textColour: Color = .white
+    var textColour: Color = .darkGray
     var fontSize: Font = .title
     
     var body: some View {
