@@ -23,7 +23,8 @@ struct FormView: View {
                     clearAllButton
                 }
             }
-        }.padding(.horizontal, Constants.Layout.paddingLarge)
+        }
+        .padding(.horizontal, Constants.Layout.paddingLarge)
     }
 }
 

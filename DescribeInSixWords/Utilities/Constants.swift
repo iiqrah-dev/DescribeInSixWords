@@ -27,6 +27,7 @@ enum Constants {
     }
     
     enum Layout {
+        static let paddingXLarge: CGFloat = 60
         static let paddingLarge: CGFloat = 30
         static let paddingMedium: CGFloat = 15
         static let paddingSmall: CGFloat = 10

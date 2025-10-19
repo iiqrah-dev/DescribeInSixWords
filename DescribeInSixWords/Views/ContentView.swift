@@ -24,7 +24,7 @@ struct ContentView: View {
                     case .form:
                         FormView(path: $path)
                             .navigationBarBackButtonHidden(true)
-                            // TODO: Implement .disableSwipeBack() helper function
+                        // TODO: Implement .disableSwipeBack() helper function
                     case .grid:
                         GridView(path: $path)
                     }

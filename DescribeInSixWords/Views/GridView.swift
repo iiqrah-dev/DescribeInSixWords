@@ -6,18 +6,17 @@
 //
 
 import SwiftUI
+import Photos
 
 struct GridView: View {
     @Binding var path: [Screen]
-    @EnvironmentObject var formViewModel: FormViewModel
-//    @StateObject private var formViewModel = FormViewModel()
+//    @EnvironmentObject var formViewModel: FormViewModel
+    @StateObject private var formViewModel = FormViewModel()
     
     var body: some View {
         VStack {
             
-            title
-            
-            grid
+            mainContent
             
             buttons
         }
@@ -30,7 +29,7 @@ private extension GridView {
         Text(Constants.Texts.appTitle)
             .font(.title)
             .bold()
-            .padding(.bottom, Constants.Layout.paddingLarge)
+            .padding(.vertical, Constants.Layout.paddingLarge)
     }
     
     var grid: some View {
@@ -61,15 +60,49 @@ private extension GridView {
                 path = [.form]
             }
             Spacer()
-            PrimaryOutlinedButton(label: " Save   ") {}
+            PrimaryOutlinedButton(label: " Save   ") {
+                if let image = saveImage() {
+                    saveImageToPhotoLibrary(image)
+                }
+            }
             Spacer()
         }
-        .padding(.top, Constants.Layout.paddingLarge)
+        .padding(.vertical, Constants.Layout.paddingLarge)
+    }
+    
+    var mainContent: some View {
+        VStack(spacing: Constants.Layout.paddingLarge) {
+            title
+            grid
+        }
+        .background(.white)
+        .padding(Constants.Layout.paddingLarge)
+    }
+    
+    func saveImage() -> UIImage? {
+        let renderer = ImageRenderer(content: mainContent)
+        return renderer.uiImage
+    }
+    
+    func saveImageToPhotoLibrary(_ image: UIImage) {
+        PHPhotoLibrary.requestAuthorization { status in
+            if status == .authorized {
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetChangeRequest.creationRequestForAsset(from: image)
+                }) { success, error in
+                    if success {
+                        print("Image saved successfully!")
+                    } else if let error = error {
+                        print("Error saving image: \(error.localizedDescription)")
+                    }
+                }
+            } else {
+                print("Photo library access denied")
+            }
+        }
     }
     
 }
-
-
 
 #Preview {
     GridView(path: .constant([]))
